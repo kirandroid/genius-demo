@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:genius_demo/core/theme/presentation/bloc/theme_cubit.dart';
 import 'package:genius_demo/injection.dart';
 
-class EventsMoMultiBlocProvider extends StatelessWidget {
+class CustomMultiBlocProvider extends StatelessWidget {
   final Widget child;
 
-  const EventsMoMultiBlocProvider({
+  const CustomMultiBlocProvider({
     Key key,
     this.child,
   }) : super(key: key);
