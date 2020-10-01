@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:genius_demo/core/error/failures.dart';
-import 'package:genius_demo/features/news/domain/entities/news.dart';
+import 'package:genius_demo/features/news/domain/entities/news_response.dart';
 
 abstract class NewsRepository {
-  Future<Either<Failure, News>> getLatestNews();
+  Future<Either<Failure, NewsResponse>> getLatestNews();
 }
