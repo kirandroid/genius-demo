@@ -1,4 +1,6 @@
+import 'package:genius_demo/core/enums/core_enums.dart';
 import 'package:genius_demo/core/hive/hive_boxes.dart';
+import 'package:genius_demo/core/theme/domain/entities/theme_config.dart';
 import 'package:genius_demo/features/news/domain/entities/news_response.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -12,6 +14,8 @@ class HiveSetup {
     Hive.init(appDocumentDir.path);
 
     Hive.registerAdapter(NewsResponseAdapter());
+    Hive.registerAdapter(ThemeTypeAdapter());
+    Hive.registerAdapter(ThemeConfigAdapter());
   }
 }
 
@@ -19,12 +23,24 @@ Future<void> clearHive() async {
   await Hive.deleteBoxFromDisk(NEWS_BOX);
   await Hive.deleteBoxFromDisk(NEWS_ARTICLE_BOX);
   await Hive.deleteBoxFromDisk(NEWS_SOURCE_BOX);
+  await Hive.deleteBoxFromDisk(THEME_CONFIG_BOX);
 }
 
 Future<LazyBox> openBox(String name) async {
   return Hive.isBoxOpen(name)
       ? Hive.lazyBox(name)
       : await Hive.openLazyBox(name);
+}
+
+Future<ThemeConfig> getHiveThemeConfigBox() async {
+  final userBox = await openBox(THEME_CONFIG_BOX);
+  if (userBox.isNotEmpty) {
+    return await userBox.getAt(0);
+  } else {
+    final hiveUser = ThemeConfig();
+    await userBox.add(hiveUser);
+    return await userBox.getAt(0);
+  }
 }
 
 Future<NewsResponse> getHiveNewsBox() async {

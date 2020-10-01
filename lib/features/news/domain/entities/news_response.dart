@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:genius_demo/core/hive/hive_type_id.dart';
 import 'package:hive/hive.dart';
