@@ -6,14 +6,13 @@ import 'package:genius_demo/core/theme/presentation/bloc/theme_cubit.dart';
 import 'package:genius_demo/core/theme/presentation/widgets/theme_builder.dart';
 import 'package:genius_demo/core/widgets/custom_multi_bloc_provider.dart';
 import 'package:genius_demo/core/widgets/screen_util_setup.dart';
-import 'package:genius_demo/injection.dart';
-import 'package:injectable/injectable.dart';
+import 'package:genius_demo/di.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  configureInjection(Environment.prod);
+  await initDI();
   await HiveSetup.initHive;
-  await getIt<ThemeCubit>().fetchTheme();
+  await sl<ThemeCubit>().fetchTheme();
   runApp(MyApp());
 }
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:genius_demo/core/theme/presentation/bloc/theme_cubit.dart';
 import 'package:genius_demo/core/theme/presentation/bloc/theme_palatte.dart';
-import 'package:genius_demo/injection.dart';
 
 class ThemeBuilder extends StatefulWidget {
   final Widget Function(BuildContext, ThemePalatte) builder;

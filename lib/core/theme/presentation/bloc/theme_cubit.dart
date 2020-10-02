@@ -4,11 +4,8 @@ import 'package:genius_demo/core/enums/core_enums.dart';
 import 'package:genius_demo/core/error/failures.dart';
 import 'package:genius_demo/core/theme/domain/usecases/apply_theme.dart';
 import 'package:genius_demo/core/theme/domain/usecases/get_theme.dart';
-import 'package:genius_demo/core/theme/presentation/bloc/core_palatte.dart';
 import 'package:genius_demo/core/theme/presentation/bloc/theme_palatte.dart';
-import 'package:injectable/injectable.dart';
 
-@injectable
 class ThemeCubit extends Cubit<ThemePalatte> {
   final ApplyTheme applyTheme;
   final GetTheme getTheme;

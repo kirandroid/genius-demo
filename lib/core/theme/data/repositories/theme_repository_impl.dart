@@ -4,10 +4,8 @@ import 'package:genius_demo/core/error/exceptions.dart';
 import 'package:genius_demo/core/error/failures.dart';
 import 'package:genius_demo/core/theme/data/datasources/theme_local_data_source.dart';
 import 'package:genius_demo/core/theme/domain/repositories/theme_repository.dart';
-import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
-@LazySingleton(as: ThemeRepository)
 class ThemeRepositoryImpl implements ThemeRepository {
   final ThemeLocalDataSource localDataSource;
 

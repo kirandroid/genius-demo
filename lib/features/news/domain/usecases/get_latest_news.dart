@@ -7,7 +7,7 @@ import 'package:genius_demo/features/news/domain/repositories/news_repository.da
 class GetLatestNews implements UseCase {
   final NewsRepository repository;
 
-  GetLatestNews(this.repository);
+  GetLatestNews({this.repository});
 
   @override
   Future<Either<Failure, NewsResponse>> call() async {

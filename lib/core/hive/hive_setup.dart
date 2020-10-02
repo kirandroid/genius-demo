@@ -14,6 +14,8 @@ class HiveSetup {
     Hive.init(appDocumentDir.path);
 
     Hive.registerAdapter(NewsResponseAdapter());
+    Hive.registerAdapter(ArticlesAdapter());
+    Hive.registerAdapter(SourceAdapter());
     Hive.registerAdapter(ThemeTypeAdapter());
     Hive.registerAdapter(ThemeConfigAdapter());
   }

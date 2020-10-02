@@ -13,7 +13,7 @@ void main() {
 
   setUp(() {
     mockLatestNewsRepository = MockGetLatestNewsRepository();
-    usecase = GetLatestNews(mockLatestNewsRepository);
+    usecase = GetLatestNews(repository: mockLatestNewsRepository);
   });
 
   final testNews = NewsResponse(articles: [
