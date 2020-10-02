@@ -3,6 +3,7 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:genius_demo/features/github/presentation/pages/github_screen.dart';
 import 'package:genius_demo/features/movies/pages/restaurant_screen.dart';
 import 'package:genius_demo/features/movies/presentation/pages/movies_screen.dart';
+import 'package:genius_demo/features/news/domain/usecases/get_latest_news.dart';
 import 'package:genius_demo/features/news/presentation/pages/news_screen.dart';
 
 class IndexScreen extends StatefulWidget {
@@ -12,6 +13,7 @@ class IndexScreen extends StatefulWidget {
 
 class _IndexScreenState extends State<IndexScreen> {
   int _selectedIndex = 0;
+  GetLatestNews getLatestNews;
 
   final _tabs = [
     NewsScreen(),

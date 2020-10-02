@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ScreenUtilSetup extends StatelessWidget {
-  final Widget child;
-  const ScreenUtilSetup({Key key, this.child}) : super(key: key);
+  final Widget Function(BuildContext) builder;
+  const ScreenUtilSetup({Key key, this.builder}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MediaQuery(
@@ -16,7 +16,7 @@ class ScreenUtilSetup extends StatelessWidget {
             height: 812,
             allowFontScaling: true,
           );
-          return child;
+          return builder?.call(context);
         },
       ),
     );

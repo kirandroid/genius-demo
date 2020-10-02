@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:genius_demo/features/news/domain/entities/news.dart';
+import 'package:genius_demo/features/news/domain/entities/news_response.dart';
 import 'package:genius_demo/features/news/domain/repositories/news_repository.dart';
 import 'package:genius_demo/features/news/domain/usecases/get_latest_news.dart';
 import 'package:mockito/mockito.dart';
@@ -13,10 +13,10 @@ void main() {
 
   setUp(() {
     mockLatestNewsRepository = MockGetLatestNewsRepository();
-    usecase = GetLatestNews(mockLatestNewsRepository);
+    usecase = GetLatestNews(repository: mockLatestNewsRepository);
   });
 
-  final testNews = News(articles: [
+  final testNews = NewsResponse(articles: [
     Articles(
         source: Source(id: "1", name: "News"),
         author: "Kiran",
