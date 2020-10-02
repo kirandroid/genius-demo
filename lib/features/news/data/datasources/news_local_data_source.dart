@@ -11,9 +11,10 @@ abstract class NewsLocalDataSource {
 class NewsLocalDataSourceImpl implements NewsLocalDataSource {
   @override
   Future<NewsResponse> getLatestNews() async {
-    final newsBox = await getHiveNewsBox();
-    if (newsBox.articles.isNotEmpty) {
-      return newsBox;
+    final newsBox = await openBox(NEWS_BOX);
+    if (newsBox.isNotEmpty) {
+      final articles = await newsBox.get('articles');
+      return NewsResponse(articles: articles.cast<Articles>());
     } else {
       throw CacheException();
     }
@@ -22,6 +23,6 @@ class NewsLocalDataSourceImpl implements NewsLocalDataSource {
   @override
   Future<void> saveLatestNews(NewsResponse newsResponse) async {
     final newsBox = await openBox(NEWS_BOX);
-    await newsBox.putAll(newsResponse.toJson());
+    await newsBox.put('articles', newsResponse.articles);
   }
 }

@@ -24,7 +24,7 @@ class NewsRepositoryImpl implements NewsRepository {
     if (await networkInfo.isConnected) {
       try {
         final remoteNews = await remoteDataSource.getLatestNews();
-        localDataSource.saveLatestNews(remoteNews);
+        await localDataSource.saveLatestNews(remoteNews);
         return Right(remoteNews);
       } on ServerException {
         return Left(ServerFailure());
