@@ -6,7 +6,7 @@ import 'package:genius_demo/features/news/data/datasources/news_local_data_sourc
 import 'package:genius_demo/features/news/data/datasources/news_remote_data_source.dart';
 import 'package:genius_demo/features/news/data/repositories/news_repository_impl.dart';
 import 'package:genius_demo/features/news/domain/repositories/news_repository.dart';
-import 'package:genius_demo/features/news/domain/usecases/get_latest_news.dart';
+import 'package:genius_demo/features/news/domain/usecases/get_news.dart';
 import 'package:genius_demo/features/news/presentation/cubit/news_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
@@ -51,8 +51,8 @@ void _themeRegistration() {
 }
 
 void _newsRegistration() {
-  sl.registerFactory(() => NewsCubit(getLatestNews: sl()));
-  sl.registerLazySingleton(() => GetLatestNews(repository: sl()));
+  sl.registerFactory(() => NewsCubit(getNews: sl()));
+  sl.registerLazySingleton(() => GetNews(repository: sl()));
   sl.registerLazySingleton<NewsRepository>(() => NewsRepositoryImpl(
       localDataSource: sl(), remoteDataSource: sl(), networkInfo: sl()));
 

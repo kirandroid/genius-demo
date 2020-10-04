@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:genius_demo/core/extensions/context_extension.dart';
 import 'package:genius_demo/core/utils/text_style.dart';
+import 'package:genius_demo/di.dart';
+import 'package:genius_demo/features/news/presentation/cubit/news_cubit.dart';
 
 class CategoryList extends StatefulWidget {
   @override
@@ -57,7 +60,8 @@ class _CategoryListState extends State<CategoryList> {
                           }
                         }
                       });
-                      print(category.name);
+                      BlocProvider.of<NewsCubit>(context)
+                          .getNewsEvent(category: category.name);
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),

@@ -4,13 +4,13 @@ import 'package:genius_demo/core/hive/hive_setup.dart';
 import 'package:genius_demo/features/news/domain/entities/news_response.dart';
 
 abstract class NewsLocalDataSource {
-  Future<NewsResponse> getLatestNews();
-  Future<void> saveLatestNews(NewsResponse newsResponse);
+  Future<NewsResponse> getNews();
+  Future<void> saveNews(NewsResponse newsResponse);
 }
 
 class NewsLocalDataSourceImpl implements NewsLocalDataSource {
   @override
-  Future<NewsResponse> getLatestNews() async {
+  Future<NewsResponse> getNews() async {
     final newsBox = await openBox(NEWS_BOX);
     if (newsBox.isNotEmpty) {
       final articles = await newsBox.get('articles');
@@ -21,7 +21,7 @@ class NewsLocalDataSourceImpl implements NewsLocalDataSource {
   }
 
   @override
-  Future<void> saveLatestNews(NewsResponse newsResponse) async {
+  Future<void> saveNews(NewsResponse newsResponse) async {
     final newsBox = await openBox(NEWS_BOX);
     await newsBox.put('articles', newsResponse.articles);
   }

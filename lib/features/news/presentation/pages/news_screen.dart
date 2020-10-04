@@ -12,7 +12,7 @@ class NewsScreen extends StatefulWidget {
 class _NewsScreenState extends State<NewsScreen> {
   @override
   void initState() {
-    context.bloc<NewsCubit>().getLatestNewsEvent();
+    context.bloc<NewsCubit>().getNewsEvent(category: 'business');
     super.initState();
   }
 
