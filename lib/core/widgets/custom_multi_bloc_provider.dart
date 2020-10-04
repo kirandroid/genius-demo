@@ -17,10 +17,10 @@ class CustomMultiBlocProvider extends StatelessWidget {
     return MultiBlocProvider(
       providers: <BlocProvider>[
         BlocProvider<ThemeCubit>(
-          create: (_) => sl<ThemeCubit>()..fetchTheme(),
+          create: (_) => sl<ThemeCubit>(),
         ),
         BlocProvider<NewsCubit>(
-          create: (_) => sl<NewsCubit>()..getLatestNews(),
+          create: (_) => sl<NewsCubit>(),
         ),
       ],
       child: child ?? SizedBox(),

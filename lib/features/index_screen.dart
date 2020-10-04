@@ -28,7 +28,6 @@ class _IndexScreenState extends State<IndexScreen> {
       body: _tabs[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: true,
-        backgroundColor: Colors.white,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Padding(
@@ -38,7 +37,7 @@ class _IndexScreenState extends State<IndexScreen> {
                 ),
               ),
               title: Text(
-                "Home",
+                "News",
               )),
           BottomNavigationBarItem(
               icon: Padding(
@@ -48,7 +47,7 @@ class _IndexScreenState extends State<IndexScreen> {
                 ),
               ),
               title: Text(
-                "Discover",
+                "Movies",
               )),
           BottomNavigationBarItem(
               icon: Padding(
@@ -58,7 +57,7 @@ class _IndexScreenState extends State<IndexScreen> {
                 ),
               ),
               title: Text(
-                "Favourites",
+                "Restaurants",
               )),
           BottomNavigationBarItem(
               icon: Padding(
@@ -66,21 +65,10 @@ class _IndexScreenState extends State<IndexScreen> {
                 child: Icon(AntDesign.github),
               ),
               title: Text(
-                "Profile",
+                "Github",
               )),
         ],
-        // selectedLabelStyle: StyleText.montMedium.copyWith(
-        //   fontSize: UISize.fontSize(12),
-        // ),
-        // unselectedLabelStyle: StyleText.montMedium.copyWith(
-        //   fontSize: UISize.fontSize(12),
-        // ),
-        iconSize: 20,
-        selectedIconTheme: IconThemeData(size: 20),
-        unselectedIconTheme: IconThemeData(size: 20),
         currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.grey,
-        fixedColor: Colors.black,
         onTap: (index) {
           setState(() {
             _selectedIndex = index;
