@@ -5,12 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 class StyleText {
   const StyleText();
 
-  static TextStyle bebasBold = GoogleFonts.bebasNeue(
+  static TextStyle cormorantBold = GoogleFonts.cormorant(
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle bebasRegular = GoogleFonts.bebasNeue(
-    fontWeight: FontWeight.w400,
+  static TextStyle cormorantMedium = GoogleFonts.cormorant(
+    fontWeight: FontWeight.w500,
   );
 
   static TextStyle montBold = GoogleFonts.montserrat(

@@ -43,6 +43,9 @@ dependencies:
   mockito: ^4.1.2
   json_serializable: ^3.5.0
   data_connection_checker: ^0.3.4
+  shimmer: ^1.1.1
+  cached_network_image: ^2.3.2+1
+  timeago: ^2.0.27
 
 dev_dependencies:
   flutter_test:

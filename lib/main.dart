@@ -39,7 +39,6 @@ class MyApp extends StatelessWidget {
                                 palatte.corePalatte.colorPrimaryDark,
                             primaryColorLight:
                                 palatte.corePalatte.colorPrimaryLight,
-                            accentColor: palatte.corePalatte.colorSecondary,
                             bottomNavigationBarTheme:
                                 BottomNavigationBarThemeData(
                               backgroundColor: palatte.surface,
