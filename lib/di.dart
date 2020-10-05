@@ -2,6 +2,12 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:genius_demo/core/theme/data/datasources/theme_local_data_source.dart';
 import 'package:genius_demo/core/theme/presentation/bloc/theme_cubit.dart';
 import 'package:genius_demo/core/utils/network_info.dart';
+import 'package:genius_demo/features/movies/data/datasources/movies_local_data_source.dart';
+import 'package:genius_demo/features/movies/data/datasources/movies_remote_data_source.dart';
+import 'package:genius_demo/features/movies/data/repositories/movies_repository_impl.dart';
+import 'package:genius_demo/features/movies/domain/repositories/movies_repository.dart';
+import 'package:genius_demo/features/movies/domain/usecases/get_movies.dart';
+import 'package:genius_demo/features/movies/presentation/cubit/movies_cubit.dart';
 import 'package:genius_demo/features/news/data/datasources/news_local_data_source.dart';
 import 'package:genius_demo/features/news/data/datasources/news_remote_data_source.dart';
 import 'package:genius_demo/features/news/data/repositories/news_repository_impl.dart';
@@ -22,6 +28,7 @@ Future<void> initDI() async {
   _themeRegistration();
   _newsRegistration();
   _externalRegistration();
+  _moviesRegistration();
 }
 
 // Theme registration
@@ -60,6 +67,18 @@ void _newsRegistration() {
       () => NewsRemoteDataSourceImpl(client: sl()));
   sl.registerLazySingleton<NewsLocalDataSource>(
       () => NewsLocalDataSourceImpl());
+}
+
+void _moviesRegistration() {
+  sl.registerFactory(() => MoviesCubit(getMovies: sl()));
+  sl.registerLazySingleton(() => GetMovies(repository: sl()));
+  sl.registerLazySingleton<MoviesRepository>(() => MoviesRepositoryImpl(
+      localDataSource: sl(), remoteDataSource: sl(), networkInfo: sl()));
+
+  sl.registerLazySingleton<MoviesRemoteDataSource>(
+      () => MoviesRemoteDataSourceImpl(client: sl()));
+  sl.registerLazySingleton<MoviesLocalDataSource>(
+      () => MoviesLocalDataSourceImpl());
 }
 
 _externalRegistration() async {
