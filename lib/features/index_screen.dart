@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:genius_demo/features/github/presentation/pages/github_screen.dart';
-import 'package:genius_demo/features/movies/pages/restaurant_screen.dart';
 import 'package:genius_demo/features/movies/presentation/pages/movies_screen.dart';
 import 'package:genius_demo/features/news/presentation/pages/news_screen.dart';
+import 'package:genius_demo/features/restaurants/presentation/pages/restaurant_screen.dart';
 
 class IndexScreen extends StatefulWidget {
   @override

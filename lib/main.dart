@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:genius_demo/core/hive/hive_setup.dart';
 import 'package:genius_demo/core/routes/router.gr.dart';
@@ -11,6 +12,7 @@ import 'package:genius_demo/di.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  GestureBinding.instance.resamplingEnabled = true;
   await initDI();
   await HiveSetup.initHive;
   await sl<ThemeCubit>().fetchTheme();

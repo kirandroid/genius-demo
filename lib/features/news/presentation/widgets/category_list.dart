@@ -22,7 +22,7 @@ class _CategoryListState extends State<CategoryList> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 14),
+      padding: const EdgeInsets.only(bottom: 14, top: 10),
       child: Container(
         height: 30,
         child: ListView.builder(
