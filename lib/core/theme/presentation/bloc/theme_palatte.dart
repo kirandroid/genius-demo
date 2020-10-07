@@ -24,15 +24,15 @@ class ThemePalatte {
     ),
   });
   static ThemePalatte get lightThemePalatte => ThemePalatte(
-        background: const Color(0xFFFFFFFF),
-        surface: const Color(0xFFEEEEEE),
+        background: const Color(0xFFEEEEEE),
+        surface: const Color(0xFFFFFFFF),
         textColor: const Color(0xFF314045),
         themeType: ThemeType.light,
         brightness: Brightness.light,
       );
   static ThemePalatte get darkThemePalatte => ThemePalatte(
-        background: const Color(0xFF0A1A1E),
-        surface: const Color(0xFF314045),
+        background: const Color(0xFF314045),
+        surface: const Color(0xFF0A1A1E),
         textColor: const Color(0xFFEEEEEE),
         themeType: ThemeType.dark,
         brightness: Brightness.dark,
