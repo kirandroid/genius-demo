@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:genius_demo/core/widgets/i_am_awesome_screen.dart';
 import 'package:genius_demo/features/index_screen.dart';
 
 @MaterialAutoRouter(
@@ -9,7 +10,12 @@ import 'package:genius_demo/features/index_screen.dart';
     CustomRoute(
         page: IndexScreen,
         transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-        initial: true)
+        initial: true),
+
+    CustomRoute(
+      page: IAmAwesomeScreen,
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+    )
   ],
 )
 class $CustomRouter {}
