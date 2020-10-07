@@ -55,6 +55,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
             return ListView(
               physics: BouncingScrollPhysics(),
               children: [
+                const SizedBox(
+                  height: 10,
+                ),
                 Container(
                   height: MediaQuery.of(context).size.width - 40,
                   child: PageView.builder(

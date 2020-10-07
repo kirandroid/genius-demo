@@ -35,7 +35,7 @@ class PageViewItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                     image: DecorationImage(
                       image: imageProvider,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -52,7 +52,9 @@ class PageViewItem extends StatelessWidget {
                     children: [
                       Text(
                         movie.vote_average.toString(),
-                        style: StyleText.montMedium,
+                        style: StyleText.montMedium.copyWith(
+                          color: Colors.black,
+                        ),
                       ),
                       Icon(
                         Icons.star,

@@ -44,11 +44,13 @@ class MovieHomeList extends StatelessWidget {
               itemBuilder: (context, index) {
                 final movie = moviesResponse.results[index];
                 return InkWell(
+                  borderRadius: BorderRadius.circular(8),
                   onTap: () {},
                   child: Hero(
                     tag: "ItemDetail${movie.id}",
                     child: Padding(
-                      padding: EdgeInsets.only(left: 16),
+                      padding: EdgeInsets.only(
+                          left: index == 0 ? 16 : 8, right: 8, top: 8),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[

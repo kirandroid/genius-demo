@@ -34,9 +34,7 @@ class _IndexScreenState extends State<IndexScreen> {
                   FontAwesome.newspaper_o,
                 ),
               ),
-              title: Text(
-                "News",
-              )),
+              label: "News"),
           BottomNavigationBarItem(
               icon: Padding(
                 padding: EdgeInsets.only(bottom: 4),
@@ -44,9 +42,7 @@ class _IndexScreenState extends State<IndexScreen> {
                   MaterialCommunityIcons.video,
                 ),
               ),
-              title: Text(
-                "Movies",
-              )),
+              label: "Movies"),
           BottomNavigationBarItem(
               icon: Padding(
                 padding: EdgeInsets.only(bottom: 4),
@@ -54,17 +50,13 @@ class _IndexScreenState extends State<IndexScreen> {
                   MaterialIcons.restaurant,
                 ),
               ),
-              title: Text(
-                "Restaurants",
-              )),
+              label: "Restaurants"),
           BottomNavigationBarItem(
               icon: Padding(
                 padding: EdgeInsets.only(bottom: 4),
                 child: Icon(AntDesign.github),
               ),
-              title: Text(
-                "Github",
-              )),
+              label: "Github"),
         ],
         currentIndex: _selectedIndex,
         onTap: (index) {

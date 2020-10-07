@@ -2,6 +2,12 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:genius_demo/core/theme/data/datasources/theme_local_data_source.dart';
 import 'package:genius_demo/core/theme/presentation/bloc/theme_cubit.dart';
 import 'package:genius_demo/core/utils/network_info.dart';
+import 'package:genius_demo/features/github/data/datasources/github_local_data_source.dart';
+import 'package:genius_demo/features/github/data/datasources/github_remote_data_source.dart';
+import 'package:genius_demo/features/github/data/repositories/github_repository_impl.dart';
+import 'package:genius_demo/features/github/domain/repositories/github_repository.dart';
+import 'package:genius_demo/features/github/domain/usecases/get_user_repo.dart';
+import 'package:genius_demo/features/github/presentation/cubit/github_cubit.dart';
 import 'package:genius_demo/features/movies/data/datasources/movies_local_data_source.dart';
 import 'package:genius_demo/features/movies/data/datasources/movies_remote_data_source.dart';
 import 'package:genius_demo/features/movies/data/repositories/movies_repository_impl.dart';
@@ -29,6 +35,7 @@ Future<void> initDI() async {
   _newsRegistration();
   _externalRegistration();
   _moviesRegistration();
+  _githubRegistration();
 }
 
 // Theme registration
@@ -79,6 +86,18 @@ void _moviesRegistration() {
       () => MoviesRemoteDataSourceImpl(client: sl()));
   sl.registerLazySingleton<MoviesLocalDataSource>(
       () => MoviesLocalDataSourceImpl());
+}
+
+void _githubRegistration() {
+  sl.registerFactory(() => GithubCubit(getUserRepo: sl()));
+  sl.registerLazySingleton(() => GetUserRepo(repository: sl()));
+  sl.registerLazySingleton<GitHubRepository>(() => GitHubRepositoryImpl(
+      localDataSource: sl(), remoteDataSource: sl(), networkInfo: sl()));
+
+  sl.registerLazySingleton<GitHubRemoteDataSource>(
+      () => GitHubRemoteDataSourceImpl(client: sl()));
+  sl.registerLazySingleton<GitHubLocalDataSource>(
+      () => GitHubLocalDataSourceImpl());
 }
 
 _externalRegistration() async {

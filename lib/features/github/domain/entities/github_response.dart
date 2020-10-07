@@ -4,10 +4,9 @@ import 'package:json_annotation/json_annotation.dart';
 part 'github_response.g.dart';
 
 @HiveType(typeId: GITHUB_TID)
-@JsonSerializable()
 class GitHubResponse {
   @HiveField(0)
-  int id;
+  final int id;
   @HiveField(1)
   String name;
   @HiveField(2)
@@ -42,7 +41,7 @@ class GitHubResponse {
   String defaultBranch;
 
   GitHubResponse(
-      {this.id,
+      this.id,
       this.name,
       this.fullName,
       this.private,
@@ -58,15 +57,34 @@ class GitHubResponse {
       this.language,
       this.forksCount,
       this.forks,
-      this.defaultBranch});
+      this.defaultBranch);
 
-  static const fromJson = _$GitHubResponseFromJson;
-
-  Map<String, dynamic> toJson() => _$GitHubResponseToJson(this);
+  static List<GitHubResponse> mapJSONStringToList(List<dynamic> jsonList) {
+    return jsonList
+        .map((r) => GitHubResponse(
+              r['id'],
+              r['name'],
+              r['full_name'],
+              r['private'],
+              r['owner'] != null ? new Owner.fromJson(r['owner']) : null,
+              r['html_url'],
+              r['description'],
+              r['fork'],
+              r['created_at'],
+              r['updated_at'],
+              r['pushed_at'],
+              r['homepage'],
+              r['stargazers_count'],
+              r['language'],
+              r['forks_count'],
+              r['forks'],
+              r['default_branch'],
+            ))
+        .toList();
+  }
 }
 
 @HiveType(typeId: GITHUB_OWNER_TID)
-@JsonSerializable()
 class Owner {
   @HiveField(0)
   String login;
@@ -77,12 +95,21 @@ class Owner {
   @HiveField(3)
   String htmlUrl;
 
-  Owner({
-    this.login,
-    this.id,
-  });
+  Owner(this.login, this.id, this.avatarUrl, this.htmlUrl);
 
-  static const fromJson = _$OwnerFromJson;
+  Owner.fromJson(Map<String, dynamic> json) {
+    login = json['login'];
+    id = json['id'];
+    avatarUrl = json['avatar_url'];
+    htmlUrl = json['html_url'];
+  }
 
-  Map<String, dynamic> toJson() => _$OwnerToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['login'] = this.login;
+    data['id'] = this.id;
+    data['avatar_url'] = this.avatarUrl;
+    data['html_url'] = this.htmlUrl;
+    return data;
+  }
 }
