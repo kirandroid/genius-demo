@@ -1,7 +1,6 @@
 import 'package:genius_demo/core/error/exceptions.dart';
 import 'package:genius_demo/core/hive/hive_boxes.dart';
 import 'package:genius_demo/core/hive/hive_setup.dart';
-import 'package:genius_demo/features/github/data/datasources/github_remote_data_source.dart';
 import 'package:genius_demo/features/github/domain/entities/github_response.dart';
 
 abstract class GitHubLocalDataSource {
@@ -15,7 +14,7 @@ class GitHubLocalDataSourceImpl implements GitHubLocalDataSource {
     final githubBox = await openBox(GITHUB_BOX);
     if (githubBox.isNotEmpty) {
       final github = await githubBox.get('github');
-      return github;
+      return github.cast<GitHubResponse>();
     } else {
       throw CacheException();
     }

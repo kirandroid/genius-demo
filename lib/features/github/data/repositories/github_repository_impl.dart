@@ -20,22 +20,27 @@ class GitHubRepositoryImpl implements GitHubRepository {
   });
 
   @override
-  Future<Either<Failure, List<GitHubResponse>>> getRepo() async {
+  Future<Either<Failure, List<GitHubResponse>>> getRepoFromLocal() async {
+    try {
+      List<GitHubResponse> localRepo = await localDataSource.getUserRepo();
+      return right(localRepo);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<GitHubResponse>>> getRepoFromRemote() async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteNews = await remoteDataSource.getUserRepo();
-        // await localDataSource.saveUserRepo(githubResponse: remoteNews);
-        return Right(remoteNews);
+        final remoteRepo = await remoteDataSource.getUserRepo();
+        await localDataSource.saveUserRepo(githubResponse: remoteRepo);
+        return Right(remoteRepo);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
-      try {
-        final localNews = await localDataSource.getUserRepo();
-        return Right(localNews);
-      } on CacheException {
-        return Left(CacheFailure());
-      }
+      return Left(CacheFailure());
     }
   }
 }

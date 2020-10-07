@@ -1,6 +1,5 @@
 import 'package:genius_demo/core/hive/hive_type_id.dart';
 import 'package:hive/hive.dart';
-import 'package:json_annotation/json_annotation.dart';
 part 'github_response.g.dart';
 
 @HiveType(typeId: GITHUB_TID)

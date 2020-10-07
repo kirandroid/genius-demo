@@ -24,7 +24,6 @@ class GitHubRemoteDataSourceImpl implements GitHubRemoteDataSource {
     );
     if (response.statusCode == 200) {
       return GitHubResponse.mapJSONStringToList(json.decode(response.body));
-      // return json.decode(response.body).cast<GitHubResponse>();
     } else {
       throw ServerException();
     }

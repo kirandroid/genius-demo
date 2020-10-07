@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:genius_demo/features/github/data/datasources/github_remote_data_source.dart';
 import 'package:genius_demo/features/github/domain/entities/github_response.dart';
 import 'package:genius_demo/features/github/domain/usecases/get_user_repo.dart';
 
@@ -13,8 +12,18 @@ class GithubCubit extends Cubit<GithubState> {
 
   Future<void> getGitHubRepo() async {
     emit(GithubLoading());
-    final failureOrRepo = await getUserRepo();
-    failureOrRepo.fold(
+    final failureOrLocalRepo = await getUserRepo.getRepoFromLocal();
+    failureOrLocalRepo.fold(
+      (failure) => emit(
+        GithubError(errorMessage: "Some Error"),
+      ),
+      (repo) => emit(
+        GithubLoaded(githubRepo: repo),
+      ),
+    );
+
+    final failureOrRemoteRepo = await getUserRepo.getRepoFromRemote();
+    failureOrRemoteRepo.fold(
       (failure) => emit(
         GithubError(errorMessage: "Some Error"),
       ),
