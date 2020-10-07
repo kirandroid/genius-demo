@@ -7,3 +7,5 @@ const int MOVIES_TID = 5;
 const int MOVIE_ITEM_TID = 6;
 const int GENRES_TID = 7;
 const int GENRES_ITEM_TID = 8;
+const int GITHUB_TID = 9;
+const int GITHUB_OWNER_TID = 10;

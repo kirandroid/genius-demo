@@ -5,3 +5,5 @@ const String NEWS_SOURCE_BOX = 'NewsSource';
 const String THEME_CONFIG_BOX = 'ThemeConfig';
 const String MOVIES_BOX = 'Movies';
 const String MOVIES_ITEM_BOX = 'MoviesItem';
+const String GITHUB_BOX = 'Github';
+const String GITHUB_OWNER_BOX = 'GithubOwner';
