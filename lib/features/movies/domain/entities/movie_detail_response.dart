@@ -4,55 +4,55 @@ part 'movie_detail_response.g.dart';
 @JsonSerializable()
 class MovieDetailResponse {
   bool adult;
-  String backdropPath;
+  String backdrop_path;
   int budget;
   List<Genres> genres;
   String homepage;
   int id;
-  String imdbId;
-  String originalLanguage;
-  String originalTitle;
+  String imdb_id;
+  String original_language;
+  String original_title;
   String overview;
   double popularity;
-  String posterPath;
-  List<ProductionCompanies> productionCompanies;
-  List<ProductionCountries> productionCountries;
-  String releaseDate;
+  String poster_path;
+  List<ProductionCompanies> production_companies;
+  List<ProductionCountries> production_countries;
+  String release_date;
   int revenue;
   int runtime;
-  List<SpokenLanguages> spokenLanguages;
+  List<SpokenLanguages> spoken_languages;
   String status;
   String tagline;
   String title;
   bool video;
-  double voteAverage;
-  int voteCount;
+  double vote_average;
+  int vote_count;
 
   MovieDetailResponse(
       {this.adult,
-      this.backdropPath,
+      this.backdrop_path,
       this.budget,
       this.genres,
       this.homepage,
       this.id,
-      this.imdbId,
-      this.originalLanguage,
-      this.originalTitle,
+      this.imdb_id,
+      this.original_language,
+      this.original_title,
       this.overview,
       this.popularity,
-      this.posterPath,
-      this.productionCompanies,
-      this.productionCountries,
-      this.releaseDate,
+      this.poster_path,
+      this.production_companies,
+      this.production_countries,
+      this.release_date,
       this.revenue,
       this.runtime,
-      this.spokenLanguages,
+      this.spoken_languages,
       this.status,
       this.tagline,
       this.title,
       this.video,
-      this.voteAverage,
-      this.voteCount});
+      this.vote_average,
+      this.vote_count});
 
   static const fromJson = _$MovieDetailResponseFromJson;
 
@@ -74,11 +74,12 @@ class Genres {
 @JsonSerializable()
 class ProductionCompanies {
   int id;
-  String logoPath;
+  String logo_path;
   String name;
-  String originCountry;
+  String origin_country;
 
-  ProductionCompanies({this.id, this.logoPath, this.name, this.originCountry});
+  ProductionCompanies(
+      {this.id, this.logo_path, this.name, this.origin_country});
 
   static const fromJson = _$ProductionCompaniesFromJson;
 

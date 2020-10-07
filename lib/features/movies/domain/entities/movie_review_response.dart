@@ -6,11 +6,11 @@ class MovieReviewResponse {
   int id;
   int page;
   List<Results> results;
-  int totalPages;
-  int totalResults;
+  int total_pages;
+  int total_results;
 
   MovieReviewResponse(
-      {this.id, this.page, this.results, this.totalPages, this.totalResults});
+      {this.id, this.page, this.results, this.total_pages, this.total_results});
   static const fromJson = _$MovieReviewResponseFromJson;
 
   Map<String, dynamic> toJson() => _$MovieReviewResponseToJson(this);

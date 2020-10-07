@@ -29,46 +29,46 @@ Map<String, dynamic> _$CastCrewResponseToJson(CastCrewResponse instance) =>
 
 Cast _$CastFromJson(Map<String, dynamic> json) {
   return Cast(
-    castId: json['castId'] as int,
+    cast_id: json['cast_id'] as int,
     character: json['character'] as String,
-    creditId: json['creditId'] as String,
+    credit_id: json['credit_id'] as String,
     gender: json['gender'] as int,
     id: json['id'] as int,
     name: json['name'] as String,
     order: json['order'] as int,
-    profilePath: json['profilePath'] as String,
+    profile_path: json['profile_path'] as String,
   );
 }
 
 Map<String, dynamic> _$CastToJson(Cast instance) => <String, dynamic>{
-      'castId': instance.castId,
+      'cast_id': instance.cast_id,
       'character': instance.character,
-      'creditId': instance.creditId,
+      'credit_id': instance.credit_id,
       'gender': instance.gender,
       'id': instance.id,
       'name': instance.name,
       'order': instance.order,
-      'profilePath': instance.profilePath,
+      'profile_path': instance.profile_path,
     };
 
 Crew _$CrewFromJson(Map<String, dynamic> json) {
   return Crew(
-    creditId: json['creditId'] as String,
+    credit_id: json['credit_id'] as String,
     department: json['department'] as String,
     gender: json['gender'] as int,
     id: json['id'] as int,
     job: json['job'] as String,
     name: json['name'] as String,
-    profilePath: json['profilePath'] as String,
+    profile_path: json['profile_path'] as String,
   );
 }
 
 Map<String, dynamic> _$CrewToJson(Crew instance) => <String, dynamic>{
-      'creditId': instance.creditId,
+      'credit_id': instance.credit_id,
       'department': instance.department,
       'gender': instance.gender,
       'id': instance.id,
       'job': instance.job,
       'name': instance.name,
-      'profilePath': instance.profilePath,
+      'profile_path': instance.profile_path,
     };

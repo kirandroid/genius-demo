@@ -16,24 +16,24 @@ class CastCrewResponse {
 
 @JsonSerializable()
 class Cast {
-  int castId;
+  int cast_id;
   String character;
-  String creditId;
+  String credit_id;
   int gender;
   int id;
   String name;
   int order;
-  String profilePath;
+  String profile_path;
 
   Cast(
-      {this.castId,
+      {this.cast_id,
       this.character,
-      this.creditId,
+      this.credit_id,
       this.gender,
       this.id,
       this.name,
       this.order,
-      this.profilePath});
+      this.profile_path});
 
   static const fromJson = _$CastFromJson;
 
@@ -42,22 +42,22 @@ class Cast {
 
 @JsonSerializable()
 class Crew {
-  String creditId;
+  String credit_id;
   String department;
   int gender;
   int id;
   String job;
   String name;
-  String profilePath;
+  String profile_path;
 
   Crew(
-      {this.creditId,
+      {this.credit_id,
       this.department,
       this.gender,
       this.id,
       this.job,
       this.name,
-      this.profilePath});
+      this.profile_path});
 
   static const fromJson = _$CrewFromJson;
 

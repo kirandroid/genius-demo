@@ -30,47 +30,47 @@ class Results extends HiveObject {
   @HiveField(0)
   double popularity;
   @HiveField(1)
-  int voteCount;
+  int vote_count;
   @HiveField(2)
   bool video;
   @HiveField(3)
-  String posterPath;
+  String poster_path;
   @HiveField(4)
   int id;
   @HiveField(5)
   bool adult;
   @HiveField(6)
-  String backdropPath;
+  String backdrop_path;
   @HiveField(7)
-  String originalLanguage;
+  String original_language;
   @HiveField(8)
-  String originalTitle;
+  String original_title;
   @HiveField(9)
-  List<int> genreIds;
+  List<int> genre_ids;
   @HiveField(10)
   String title;
   @HiveField(11)
-  double voteAverage;
+  double vote_average;
   @HiveField(12)
   String overview;
   @HiveField(13)
-  String releaseDate;
+  String release_date;
 
   Results({
     @required this.popularity,
     @required this.adult,
     @required this.title,
-    @required this.backdropPath,
-    @required this.genreIds,
+    @required this.backdrop_path,
+    @required this.genre_ids,
     @required this.id,
-    @required this.originalLanguage,
-    @required this.originalTitle,
+    @required this.original_language,
+    @required this.original_title,
     @required this.overview,
-    @required this.posterPath,
-    @required this.releaseDate,
+    @required this.poster_path,
+    @required this.release_date,
     @required this.video,
-    @required this.voteAverage,
-    @required this.voteCount,
+    @required this.vote_average,
+    @required this.vote_count,
   });
 
   static const fromJson = _$ResultsFromJson;

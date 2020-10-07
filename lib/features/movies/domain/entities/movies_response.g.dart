@@ -63,17 +63,17 @@ class ResultsAdapter extends TypeAdapter<Results> {
       popularity: fields[0] as double,
       adult: fields[5] as bool,
       title: fields[10] as String,
-      backdropPath: fields[6] as String,
-      genreIds: (fields[9] as List)?.cast<int>(),
+      backdrop_path: fields[6] as String,
+      genre_ids: (fields[9] as List)?.cast<int>(),
       id: fields[4] as int,
-      originalLanguage: fields[7] as String,
-      originalTitle: fields[8] as String,
+      original_language: fields[7] as String,
+      original_title: fields[8] as String,
       overview: fields[12] as String,
-      posterPath: fields[3] as String,
-      releaseDate: fields[13] as String,
+      poster_path: fields[3] as String,
+      release_date: fields[13] as String,
       video: fields[2] as bool,
-      voteAverage: fields[11] as double,
-      voteCount: fields[1] as int,
+      vote_average: fields[11] as double,
+      vote_count: fields[1] as int,
     );
   }
 
@@ -84,31 +84,31 @@ class ResultsAdapter extends TypeAdapter<Results> {
       ..writeByte(0)
       ..write(obj.popularity)
       ..writeByte(1)
-      ..write(obj.voteCount)
+      ..write(obj.vote_count)
       ..writeByte(2)
       ..write(obj.video)
       ..writeByte(3)
-      ..write(obj.posterPath)
+      ..write(obj.poster_path)
       ..writeByte(4)
       ..write(obj.id)
       ..writeByte(5)
       ..write(obj.adult)
       ..writeByte(6)
-      ..write(obj.backdropPath)
+      ..write(obj.backdrop_path)
       ..writeByte(7)
-      ..write(obj.originalLanguage)
+      ..write(obj.original_language)
       ..writeByte(8)
-      ..write(obj.originalTitle)
+      ..write(obj.original_title)
       ..writeByte(9)
-      ..write(obj.genreIds)
+      ..write(obj.genre_ids)
       ..writeByte(10)
       ..write(obj.title)
       ..writeByte(11)
-      ..write(obj.voteAverage)
+      ..write(obj.vote_average)
       ..writeByte(12)
       ..write(obj.overview)
       ..writeByte(13)
-      ..write(obj.releaseDate);
+      ..write(obj.release_date);
   }
 
   @override
@@ -151,33 +151,33 @@ Results _$ResultsFromJson(Map<String, dynamic> json) {
     popularity: (json['popularity'] as num)?.toDouble(),
     adult: json['adult'] as bool,
     title: json['title'] as String,
-    backdropPath: json['backdropPath'] as String,
-    genreIds: (json['genreIds'] as List)?.map((e) => e as int)?.toList(),
+    backdrop_path: json['backdrop_path'] as String,
+    genre_ids: (json['genre_ids'] as List)?.map((e) => e as int)?.toList(),
     id: json['id'] as int,
-    originalLanguage: json['originalLanguage'] as String,
-    originalTitle: json['originalTitle'] as String,
+    original_language: json['original_language'] as String,
+    original_title: json['original_title'] as String,
     overview: json['overview'] as String,
-    posterPath: json['posterPath'] as String,
-    releaseDate: json['releaseDate'] as String,
+    poster_path: json['poster_path'] as String,
+    release_date: json['release_date'] as String,
     video: json['video'] as bool,
-    voteAverage: (json['voteAverage'] as num)?.toDouble(),
-    voteCount: json['voteCount'] as int,
+    vote_average: (json['vote_average'] as num)?.toDouble(),
+    vote_count: json['vote_count'] as int,
   );
 }
 
 Map<String, dynamic> _$ResultsToJson(Results instance) => <String, dynamic>{
       'popularity': instance.popularity,
-      'voteCount': instance.voteCount,
+      'vote_count': instance.vote_count,
       'video': instance.video,
-      'posterPath': instance.posterPath,
+      'poster_path': instance.poster_path,
       'id': instance.id,
       'adult': instance.adult,
-      'backdropPath': instance.backdropPath,
-      'originalLanguage': instance.originalLanguage,
-      'originalTitle': instance.originalTitle,
-      'genreIds': instance.genreIds,
+      'backdrop_path': instance.backdrop_path,
+      'original_language': instance.original_language,
+      'original_title': instance.original_title,
+      'genre_ids': instance.genre_ids,
       'title': instance.title,
-      'voteAverage': instance.voteAverage,
+      'vote_average': instance.vote_average,
       'overview': instance.overview,
-      'releaseDate': instance.releaseDate,
+      'release_date': instance.release_date,
     };
