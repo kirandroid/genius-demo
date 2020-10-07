@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:genius_demo/core/utils/openWebview.dart';
 import 'package:genius_demo/core/utils/text_style.dart';
 import 'package:genius_demo/core/widgets/custom_scaffold.dart';
 import 'package:genius_demo/core/widgets/shimmerEffect.dart';
@@ -69,7 +70,7 @@ class _GithubScreenState extends State<GithubScreen> {
                       child: Material(
                         type: MaterialType.transparency,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () async => openWebview(context, git.htmlUrl),
                           borderRadius: BorderRadius.circular(8),
                           child: Container(
                             padding: const EdgeInsets.all(20),
