@@ -19,6 +19,14 @@ class MoviesError extends MoviesState {
 }
 
 class MoviesLoaded extends MoviesState {
-  final MoviesResponse moviesResponse;
-  MoviesLoaded({@required this.moviesResponse});
+  final MoviesResponse popularMovies;
+  final MoviesResponse nowPlayingMovies;
+  final MoviesResponse topRatedMovies;
+  final MoviesResponse upcomingMovies;
+  MoviesLoaded({
+    @required this.popularMovies,
+    @required this.nowPlayingMovies,
+    @required this.topRatedMovies,
+    @required this.upcomingMovies,
+  });
 }

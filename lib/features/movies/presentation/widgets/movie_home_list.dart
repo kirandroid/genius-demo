@@ -6,8 +6,9 @@ import 'package:genius_demo/core/extensions/context_extension.dart';
 import 'package:genius_demo/features/movies/domain/entities/movies_response.dart';
 
 class MovieHomeList extends StatelessWidget {
+  final String listTitle;
   final MoviesResponse moviesResponse;
-  MovieHomeList({this.moviesResponse});
+  MovieHomeList({@required this.moviesResponse, @required this.listTitle});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,7 +19,7 @@ class MovieHomeList extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(left: 15),
-              child: Text("POPULAR MOVIES",
+              child: Text(listTitle,
                   style: StyleText.montMedium.copyWith(
                       color: Colors.grey, fontSize: 12, letterSpacing: 2)),
             ),
@@ -47,7 +48,7 @@ class MovieHomeList extends StatelessWidget {
                   child: Hero(
                     tag: "ItemDetail${movie.id}",
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.only(left: 16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -90,7 +91,7 @@ class MovieHomeList extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: StyleText.montSemiBold.copyWith(
                                   fontSize: 10,
-                                  color: Colors.black,
+                                  color: context.theme.textColor,
                                 ),
                               ))
                         ],

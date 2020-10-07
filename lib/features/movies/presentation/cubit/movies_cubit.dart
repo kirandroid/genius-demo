@@ -12,13 +12,45 @@ class MoviesCubit extends Cubit<MoviesState> {
 
   Future<void> getPopularMovies() async {
     emit(MoviesLoading());
-    final failureOrNews = await getMovies(endpoint: 'popular');
-    failureOrNews.fold(
-      (failure) => emit(
-        MoviesError(errorMessage: "Some Error"),
-      ),
-      (movies) => emit(
-        MoviesLoaded(moviesResponse: movies),
+    final popularMoviesFailureOrMovie = await getMovies(endpoint: 'popular');
+    final nowPlayingMoviesFailureOrMovie =
+        await getMovies(endpoint: 'now_playing');
+    final topRatedMoviesFailureOrMovie = await getMovies(endpoint: 'top_rated');
+    final upcomingMoviesFailureOrMovie = await getMovies(endpoint: 'upcoming');
+
+    MoviesResponse popularMovie;
+    MoviesResponse nowPlayingMovie;
+    MoviesResponse topRatedMovie;
+    MoviesResponse upcomingMovie;
+    popularMoviesFailureOrMovie.fold(
+        (failure) => emit(
+              MoviesError(errorMessage: "Some Error"),
+            ),
+        (movies) => popularMovie = movies);
+    nowPlayingMoviesFailureOrMovie.fold(
+        (failure) => emit(
+              MoviesError(errorMessage: "Some Error"),
+            ),
+        (movies) => nowPlayingMovie = movies);
+
+    topRatedMoviesFailureOrMovie.fold(
+        (failure) => emit(
+              MoviesError(errorMessage: "Some Error"),
+            ),
+        (movies) => topRatedMovie = movies);
+
+    upcomingMoviesFailureOrMovie.fold(
+        (failure) => emit(
+              MoviesError(errorMessage: "Some Error"),
+            ),
+        (movies) => upcomingMovie = movies);
+
+    emit(
+      MoviesLoaded(
+        popularMovies: popularMovie,
+        nowPlayingMovies: nowPlayingMovie,
+        topRatedMovies: topRatedMovie,
+        upcomingMovies: upcomingMovie,
       ),
     );
   }

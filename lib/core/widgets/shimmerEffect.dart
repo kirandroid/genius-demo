@@ -9,7 +9,7 @@ class ShimmerEffect extends StatelessWidget {
   const ShimmerEffect({
     Key key,
     this.height = 30.0,
-    this.width = 200.0,
+    this.width,
     this.isCircular = false,
   }) : super(key: key);
 
@@ -20,6 +20,7 @@ class ShimmerEffect extends StatelessWidget {
       highlightColor: Colors.grey[100],
       child: Container(
         height: this.height,
+        width: this.width,
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius:
