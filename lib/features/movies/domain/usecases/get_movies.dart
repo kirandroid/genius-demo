@@ -5,14 +5,18 @@ import 'package:genius_demo/core/usecases/usecase.dart';
 import 'package:genius_demo/features/movies/domain/entities/movies_response.dart';
 import 'package:genius_demo/features/movies/domain/repositories/movies_repository.dart';
 
-class GetMovies implements UseCase {
+class GetMovies {
   final MoviesRepository repository;
 
   GetMovies({this.repository});
 
-  @override
-  Future<Either<Failure, MoviesResponse>> call(
+  Future<Either<Failure, MoviesResponse>> getLocalMovies(
       {@required String endpoint}) async {
-    return repository.getMovies(endpoint: endpoint);
+    return repository.getLocalMovies(endpoint: endpoint);
+  }
+
+  Future<Either<Failure, MoviesResponse>> getRemoteMovies(
+      {@required String endpoint}) async {
+    return repository.getRemoteMovies(endpoint: endpoint);
   }
 }

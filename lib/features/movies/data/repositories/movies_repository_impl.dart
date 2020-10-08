@@ -40,4 +40,34 @@ class MoviesRepositoryImpl implements MoviesRepository {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, MoviesResponse>> getLocalMovies(
+      {String endpoint}) async {
+    try {
+      MoviesResponse localMovie =
+          await localDataSource.getMovies(endpoint: endpoint);
+      return right(localMovie);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, MoviesResponse>> getRemoteMovies(
+      {String endpoint}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        MoviesResponse remoteMovie =
+            await remoteDataSource.getMovieList(endpoint: endpoint);
+        await localDataSource.saveMovies(
+            moviesResponse: remoteMovie, endpoint: endpoint);
+        return Right(remoteMovie);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(CacheFailure());
+    }
+  }
 }

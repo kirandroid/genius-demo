@@ -114,13 +114,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
               ],
             );
           } else if (state is MoviesError) {
-            return Center(
-              child: Text(state.errorMessage),
-            );
+            return MovieHomeLoading();
           } else {
-            return Center(
-              child: Text("Some Errors"),
-            );
+            return MovieHomeLoading();
           }
         },
       ),

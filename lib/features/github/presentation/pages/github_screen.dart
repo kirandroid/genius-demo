@@ -82,10 +82,15 @@ class _GithubScreenState extends State<GithubScreen> {
                                     CircleAvatar(
                                       child: CachedNetworkImage(
                                         imageUrl: git.owner.avatarUrl,
-                                        placeholder: (context, url) =>
-                                            Center(child: ShimmerEffect()),
+                                        placeholder: (context, url) => Center(
+                                            child: ShimmerEffect(
+                                          isCircular: true,
+                                        )),
                                         errorWidget: (context, url, error) =>
-                                            Center(child: ShimmerEffect()),
+                                            Center(
+                                                child: ShimmerEffect(
+                                          isCircular: true,
+                                        )),
                                         imageBuilder:
                                             (context, imageProvider) =>
                                                 Container(
@@ -216,12 +221,28 @@ class _GithubScreenState extends State<GithubScreen> {
                 },
               );
             } else if (state is GithubError) {
-              return Center(
-                child: Text(state.errorMessage),
+              return ListView.builder(
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: ShimmerEffect(
+                      height: 200,
+                    ),
+                  );
+                },
               );
             } else {
-              return Center(
-                child: Text("Some Errors"),
+              return ListView.builder(
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: ShimmerEffect(
+                      height: 200,
+                    ),
+                  );
+                },
               );
             }
           },

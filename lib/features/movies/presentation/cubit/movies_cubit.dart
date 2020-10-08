@@ -12,34 +12,83 @@ class MoviesCubit extends Cubit<MoviesState> {
 
   Future<void> getPopularMovies() async {
     emit(MoviesLoading());
-    final popularMoviesFailureOrMovie = await getMovies(endpoint: 'popular');
-    final nowPlayingMoviesFailureOrMovie =
-        await getMovies(endpoint: 'now_playing');
-    final topRatedMoviesFailureOrMovie = await getMovies(endpoint: 'top_rated');
-    final upcomingMoviesFailureOrMovie = await getMovies(endpoint: 'upcoming');
+    MoviesResponse popularMovie = MoviesResponse();
+    MoviesResponse nowPlayingMovie = MoviesResponse();
+    MoviesResponse topRatedMovie = MoviesResponse();
+    MoviesResponse upcomingMovie = MoviesResponse();
+    final localFailureOrPopular =
+        await getMovies.getLocalMovies(endpoint: 'popular');
+    final localFailureOrNowPlaying =
+        await getMovies.getLocalMovies(endpoint: 'now_playing');
+    final localFailureOrTopRated =
+        await getMovies.getLocalMovies(endpoint: 'top_rated');
+    final localFailureOrUpcoming =
+        await getMovies.getLocalMovies(endpoint: 'upcoming');
 
-    MoviesResponse popularMovie;
-    MoviesResponse nowPlayingMovie;
-    MoviesResponse topRatedMovie;
-    MoviesResponse upcomingMovie;
-    popularMoviesFailureOrMovie.fold(
+    localFailureOrPopular.fold(
         (failure) => emit(
               MoviesError(errorMessage: "Some Error"),
             ),
         (movies) => popularMovie = movies);
-    nowPlayingMoviesFailureOrMovie.fold(
+    localFailureOrNowPlaying.fold(
         (failure) => emit(
               MoviesError(errorMessage: "Some Error"),
             ),
         (movies) => nowPlayingMovie = movies);
 
-    topRatedMoviesFailureOrMovie.fold(
+    localFailureOrTopRated.fold(
         (failure) => emit(
               MoviesError(errorMessage: "Some Error"),
             ),
         (movies) => topRatedMovie = movies);
 
-    upcomingMoviesFailureOrMovie.fold(
+    localFailureOrUpcoming.fold(
+        (failure) => emit(
+              MoviesError(errorMessage: "Some Error"),
+            ),
+        (movies) => upcomingMovie = movies);
+
+    if (popularMovie.results != null &&
+        nowPlayingMovie.results != null &&
+        topRatedMovie.results != null &&
+        upcomingMovie.results != null) {
+      emit(
+        MoviesLoaded(
+          popularMovies: popularMovie,
+          nowPlayingMovies: nowPlayingMovie,
+          topRatedMovies: topRatedMovie,
+          upcomingMovies: upcomingMovie,
+        ),
+      );
+    }
+
+    final remoteFailureOrPopular =
+        await getMovies.getRemoteMovies(endpoint: 'popular');
+    final remoteFailureOrNowPlaying =
+        await getMovies.getRemoteMovies(endpoint: 'now_playing');
+    final remoteFailureOrTopRated =
+        await getMovies.getRemoteMovies(endpoint: 'top_rated');
+    final remoteFailureOrUpcoming =
+        await getMovies.getRemoteMovies(endpoint: 'upcoming');
+
+    remoteFailureOrPopular.fold(
+        (failure) => emit(
+              MoviesError(errorMessage: "Some Error"),
+            ),
+        (movies) => popularMovie = movies);
+    remoteFailureOrNowPlaying.fold(
+        (failure) => emit(
+              MoviesError(errorMessage: "Some Error"),
+            ),
+        (movies) => nowPlayingMovie = movies);
+
+    remoteFailureOrTopRated.fold(
+        (failure) => emit(
+              MoviesError(errorMessage: "Some Error"),
+            ),
+        (movies) => topRatedMovie = movies);
+
+    remoteFailureOrUpcoming.fold(
         (failure) => emit(
               MoviesError(errorMessage: "Some Error"),
             ),
