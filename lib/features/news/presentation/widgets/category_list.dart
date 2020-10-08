@@ -42,7 +42,7 @@ class _CategoryListState extends State<CategoryList> {
                     ),
                     color: category.isSelected
                         ? context.theme.corePalatte.colorPrimary
-                        : context.theme.surface),
+                        : context.theme.background),
                 child: Material(
                   type: MaterialType.transparency,
                   child: InkWell(

@@ -13,6 +13,8 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="Genius Demo"
         android:icon="@mipmap/launcher_icon">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyCXhls9ldqUlMDtSkj5e-FqiSMTAEhf-jg"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

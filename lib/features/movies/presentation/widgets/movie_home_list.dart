@@ -46,58 +46,54 @@ class MovieHomeList extends StatelessWidget {
                 return InkWell(
                   borderRadius: BorderRadius.circular(8),
                   onTap: () {},
-                  child: Hero(
-                    tag: "ItemDetail${movie.id}",
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          left: index == 0 ? 16 : 8, right: 8, top: 8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            height: 130,
-                            width: 100,
-                            child: CachedNetworkImage(
-                              imageUrl:
-                                  'https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.backdrop_path == null ? '/riYInlsq2kf1AWoGm80JQW5dLKp.jpg' : movie.backdrop_path}',
-                              placeholder: (context, url) => Center(
-                                  child: ShimmerEffect(
-                                height: 130,
-                              )),
-                              errorWidget: (context, url, error) => Center(
-                                  child: ShimmerEffect(
-                                height: 130,
-                              )),
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                height: 130,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6)),
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
-                                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        left: index == 0 ? 16 : 8, right: 8, top: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          height: 130,
+                          width: 100,
+                          child: CachedNetworkImage(
+                            imageUrl:
+                                'https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.backdrop_path == null ? '/riYInlsq2kf1AWoGm80JQW5dLKp.jpg' : movie.backdrop_path}',
+                            placeholder: (context, url) => Center(
+                                child: ShimmerEffect(
+                              height: 130,
+                            )),
+                            errorWidget: (context, url, error) => Center(
+                                child: ShimmerEffect(
+                              height: 130,
+                            )),
+                            imageBuilder: (context, imageProvider) => Container(
+                              height: 130,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
                           ),
-                          Container(
-                              padding: EdgeInsets.only(top: 5),
-                              width: 100,
-                              child: Text(
-                                movie.title,
-                                softWrap: true,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                                textAlign: TextAlign.left,
-                                style: StyleText.montSemiBold.copyWith(
-                                  fontSize: 10,
-                                  color: context.theme.textColor,
-                                ),
-                              ))
-                        ],
-                      ),
+                        ),
+                        Container(
+                            padding: EdgeInsets.only(top: 5),
+                            width: 100,
+                            child: Text(
+                              movie.title,
+                              softWrap: true,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              textAlign: TextAlign.left,
+                              style: StyleText.montSemiBold.copyWith(
+                                fontSize: 10,
+                                color: context.theme.textColor,
+                              ),
+                            ))
+                      ],
                     ),
                   ),
                 );

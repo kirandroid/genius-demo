@@ -31,8 +31,8 @@ class ThemePalatte {
         brightness: Brightness.light,
       );
   static ThemePalatte get darkThemePalatte => ThemePalatte(
-        background: const Color(0xFF314045),
-        surface: const Color(0xFF0A1A1E),
+        background: const Color(0xFF333333),
+        surface: const Color(0xFF212121),
         textColor: const Color(0xFFEEEEEE),
         themeType: ThemeType.dark,
         brightness: Brightness.dark,
