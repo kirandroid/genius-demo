@@ -13,8 +13,8 @@ class NewsLocalDataSourceImpl implements NewsLocalDataSource {
   @override
   Future<NewsResponse> getNews({@required String category}) async {
     final newsBox = await openBox(NEWS_BOX);
-    if (newsBox.isNotEmpty) {
-      final articles = await newsBox.get(category);
+    final articles = await newsBox.get(category);
+    if (newsBox.isNotEmpty && articles != null) {
       return NewsResponse(articles: articles.cast<Articles>());
     } else {
       throw CacheException();

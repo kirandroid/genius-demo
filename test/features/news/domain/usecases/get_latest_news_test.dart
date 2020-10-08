@@ -31,16 +31,17 @@ void main() {
     "Should get the latest News from the repository",
     () async {
       //arrange
-      when(mockLatestNewsRepository.getNews(category: 'business')).thenAnswer(
+      when(mockLatestNewsRepository.getNewsFromRemote(category: 'business'))
+          .thenAnswer(
         (_) async => Right(testNews),
       );
 
       //act
-      final result = await usecase(category: 'business');
+      final result = await usecase.getNewsFromRemote(category: 'business');
 
       //assert
       expect(result, Right(testNews));
-      verify(mockLatestNewsRepository.getNews(category: 'business'));
+      verify(mockLatestNewsRepository.getNewsFromRemote(category: 'business'));
       verifyNoMoreInteractions(mockLatestNewsRepository);
     },
   );

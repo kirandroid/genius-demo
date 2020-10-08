@@ -45,13 +45,9 @@ class _NewsScreenState extends State<NewsScreen> {
                           );
                         });
                   } else if (state is NewsError) {
-                    return Center(
-                      child: Text(state.errorMessage),
-                    );
+                    return LoadingFeedShimmer();
                   } else {
-                    return Center(
-                      child: Text("Some Errors"),
-                    );
+                    return LoadingFeedShimmer();
                   }
                 },
               ),

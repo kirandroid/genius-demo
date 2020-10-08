@@ -12,8 +12,20 @@ class NewsCubit extends Cubit<NewsState> {
 
   Future<void> getNewsEvent({String category}) async {
     emit(NewsLoading());
-    final failureOrNews = await getNews(category: category);
-    failureOrNews.fold(
+    final failureOrNewsLocal =
+        await getNews.getNewsFromLocal(category: category);
+    failureOrNewsLocal.fold(
+      (failure) => emit(
+        NewsError(errorMessage: "Some Error"),
+      ),
+      (news) => emit(
+        NewsLoaded(newsResponse: news),
+      ),
+    );
+
+    final failureOrNewsRemote =
+        await getNews.getNewsFromRemote(category: category);
+    failureOrNewsRemote.fold(
       (failure) => emit(
         NewsError(errorMessage: "Some Error"),
       ),
