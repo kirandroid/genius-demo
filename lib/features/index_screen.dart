@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:genius_demo/features/github/presentation/pages/github_screen.dart';
-import 'package:genius_demo/features/movies/pages/restaurant_screen.dart';
 import 'package:genius_demo/features/movies/presentation/pages/movies_screen.dart';
-import 'package:genius_demo/features/news/domain/usecases/get_latest_news.dart';
 import 'package:genius_demo/features/news/presentation/pages/news_screen.dart';
+import 'package:genius_demo/features/restaurants/presentation/pages/restaurant_screen.dart';
 
 class IndexScreen extends StatefulWidget {
   @override
@@ -13,7 +12,6 @@ class IndexScreen extends StatefulWidget {
 
 class _IndexScreenState extends State<IndexScreen> {
   int _selectedIndex = 0;
-  GetLatestNews getLatestNews;
 
   final _tabs = [
     NewsScreen(),
@@ -28,7 +26,6 @@ class _IndexScreenState extends State<IndexScreen> {
       body: _tabs[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: true,
-        backgroundColor: Colors.white,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Padding(
@@ -37,9 +34,7 @@ class _IndexScreenState extends State<IndexScreen> {
                   FontAwesome.newspaper_o,
                 ),
               ),
-              title: Text(
-                "Home",
-              )),
+              label: "News"),
           BottomNavigationBarItem(
               icon: Padding(
                 padding: EdgeInsets.only(bottom: 4),
@@ -47,9 +42,7 @@ class _IndexScreenState extends State<IndexScreen> {
                   MaterialCommunityIcons.video,
                 ),
               ),
-              title: Text(
-                "Discover",
-              )),
+              label: "Movies"),
           BottomNavigationBarItem(
               icon: Padding(
                 padding: EdgeInsets.only(bottom: 4),
@@ -57,30 +50,15 @@ class _IndexScreenState extends State<IndexScreen> {
                   MaterialIcons.restaurant,
                 ),
               ),
-              title: Text(
-                "Favourites",
-              )),
+              label: "Restaurants"),
           BottomNavigationBarItem(
               icon: Padding(
                 padding: EdgeInsets.only(bottom: 4),
                 child: Icon(AntDesign.github),
               ),
-              title: Text(
-                "Profile",
-              )),
+              label: "Github"),
         ],
-        // selectedLabelStyle: StyleText.montMedium.copyWith(
-        //   fontSize: UISize.fontSize(12),
-        // ),
-        // unselectedLabelStyle: StyleText.montMedium.copyWith(
-        //   fontSize: UISize.fontSize(12),
-        // ),
-        iconSize: 20,
-        selectedIconTheme: IconThemeData(size: 20),
-        unselectedIconTheme: IconThemeData(size: 20),
         currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.grey,
-        fixedColor: Colors.black,
         onTap: (index) {
           setState(() {
             _selectedIndex = index;

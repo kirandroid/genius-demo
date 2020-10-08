@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:genius_demo/core/theme/presentation/bloc/theme_cubit.dart';
 import 'package:genius_demo/di.dart';
+import 'package:genius_demo/features/github/presentation/cubit/github_cubit.dart';
+import 'package:genius_demo/features/movies/presentation/cubit/movies_cubit.dart';
 import 'package:genius_demo/features/news/presentation/cubit/news_cubit.dart';
 
 class CustomMultiBlocProvider extends StatelessWidget {
@@ -17,10 +19,16 @@ class CustomMultiBlocProvider extends StatelessWidget {
     return MultiBlocProvider(
       providers: <BlocProvider>[
         BlocProvider<ThemeCubit>(
-          create: (_) => sl<ThemeCubit>()..fetchTheme(),
+          create: (_) => sl<ThemeCubit>(),
         ),
         BlocProvider<NewsCubit>(
-          create: (_) => sl<NewsCubit>()..getLatestNews(),
+          create: (_) => sl<NewsCubit>(),
+        ),
+        BlocProvider<MoviesCubit>(
+          create: (_) => sl<MoviesCubit>(),
+        ),
+        BlocProvider<GithubCubit>(
+          create: (_) => sl<GithubCubit>(),
         ),
       ],
       child: child ?? SizedBox(),

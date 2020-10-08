@@ -1,34 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:genius_demo/core/enums/core_enums.dart';
-import 'package:genius_demo/core/extensions/context_extension.dart';
-import 'package:genius_demo/core/theme/presentation/bloc/theme_cubit.dart';
-import 'package:genius_demo/di.dart';
+import 'package:genius_demo/core/widgets/custom_scaffold.dart';
 import 'package:genius_demo/features/news/presentation/cubit/news_cubit.dart';
+import 'package:genius_demo/features/news/presentation/widgets/category_list.dart';
+import 'package:genius_demo/features/news/presentation/widgets/loading_feed_shimmer.dart';
+import 'package:genius_demo/features/news/presentation/widgets/news_item.dart';
 
-class NewsScreen extends StatelessWidget {
+class NewsScreen extends StatefulWidget {
+  @override
+  _NewsScreenState createState() => _NewsScreenState();
+}
+
+class _NewsScreenState extends State<NewsScreen> {
+  @override
+  void initState() {
+    context.bloc<NewsCubit>().getNewsEvent(category: 'business');
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Switch(
-                value: context.theme.themeType == ThemeType.dark,
-                onChanged: (bool status) {
-                  sl<ThemeCubit>().switchTheme(
-                    context.theme.themeType,
-                  );
-                }),
-            RaisedButton(
-              onPressed: () {
-                sl<NewsCubit>().getLatestNewsEvent();
-              },
-              child: Text("Get Data"),
-            )
-          ],
-        ),
+    return CustomScaffold(
+      title: "NEWS",
+      body: Column(
+        children: [
+          CategoryList(),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: BlocBuilder<NewsCubit, NewsState>(
+                builder: (context, state) {
+                  if (state is NewsInitial) {
+                    return LoadingFeedShimmer();
+                  } else if (state is NewsLoading) {
+                    return LoadingFeedShimmer();
+                  } else if (state is NewsLoaded) {
+                    return ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: state.newsResponse.articles.length,
+                        itemBuilder: (context, index) {
+                          final article = state.newsResponse.articles[index];
+                          return NewsItem(
+                            article: article,
+                          );
+                        });
+                  } else if (state is NewsError) {
+                    return LoadingFeedShimmer();
+                  } else {
+                    return LoadingFeedShimmer();
+                  }
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

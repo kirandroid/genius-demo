@@ -20,22 +20,33 @@ class NewsRepositoryImpl implements NewsRepository {
   });
 
   @override
-  Future<Either<Failure, NewsResponse>> getLatestNews() async {
+  Future<Either<Failure, NewsResponse>> getNewsFromLocal(
+      {String category}) async {
+    try {
+      NewsResponse localNews =
+          await localDataSource.getNews(category: category);
+      return right(localNews);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, NewsResponse>> getNewsFromRemote(
+      {String category}) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteNews = await remoteDataSource.getLatestNews();
-        localDataSource.saveLatestNews(remoteNews);
+        final remoteNews = await remoteDataSource.getNews(category: category);
+        await localDataSource.saveNews(
+          category: category,
+          newsResponse: remoteNews,
+        );
         return Right(remoteNews);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
-      try {
-        final localNews = await localDataSource.getLatestNews();
-        return Right(localNews);
-      } on CacheException {
-        return Left(CacheFailure());
-      }
+      return getNewsFromLocal(category: category);
     }
   }
 }

@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
 abstract class NewsRemoteDataSource {
-  Future<NewsResponse> getLatestNews();
+  Future<NewsResponse> getNews({@required String category});
 }
 
 class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
@@ -15,9 +15,9 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
 
   NewsRemoteDataSourceImpl({@required this.client});
   @override
-  Future<NewsResponse> getLatestNews() async {
+  Future<NewsResponse> getNews({String category}) async {
     final response = await client.get(
-      'https://newsapi.org/v2/top-headlines?country=us&apiKey=$newsApiKey&page_size=10',
+      'https://newsapi.org/v2/top-headlines?country=us&category=$category&apiKey=$newsApiKey&page_size=10',
       headers: {
         'Content-Type': 'application/json',
       },
