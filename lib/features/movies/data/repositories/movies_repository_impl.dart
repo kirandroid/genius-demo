@@ -20,28 +20,6 @@ class MoviesRepositoryImpl implements MoviesRepository {
   });
 
   @override
-  Future<Either<Failure, MoviesResponse>> getMovies({String endpoint}) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final remoteNews =
-            await remoteDataSource.getMovieList(endpoint: endpoint);
-        await localDataSource.saveMovies(
-            endpoint: endpoint, moviesResponse: remoteNews);
-        return Right(remoteNews);
-      } on ServerException {
-        return Left(ServerFailure());
-      }
-    } else {
-      try {
-        final localNews = await localDataSource.getMovies(endpoint: endpoint);
-        return Right(localNews);
-      } on CacheException {
-        return Left(CacheFailure());
-      }
-    }
-  }
-
-  @override
   Future<Either<Failure, MoviesResponse>> getLocalMovies(
       {String endpoint}) async {
     try {
@@ -67,7 +45,7 @@ class MoviesRepositoryImpl implements MoviesRepository {
         return Left(ServerFailure());
       }
     } else {
-      return Left(CacheFailure());
+      return getLocalMovies(endpoint: endpoint);
     }
   }
 }

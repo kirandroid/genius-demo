@@ -40,7 +40,7 @@ class GitHubRepositoryImpl implements GitHubRepository {
         return Left(ServerFailure());
       }
     } else {
-      return Left(CacheFailure());
+      return getRepoFromLocal();
     }
   }
 }

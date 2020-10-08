@@ -46,7 +46,7 @@ class NewsRepositoryImpl implements NewsRepository {
         return Left(ServerFailure());
       }
     } else {
-      return Left(CacheFailure());
+      return getNewsFromLocal(category: category);
     }
   }
 }
