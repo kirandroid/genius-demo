@@ -37,12 +37,12 @@ class _MoviesScreenState extends State<MoviesScreen> {
     }
   }
 
-  @override
-  void deactivate() {
-    // Pauses video while navigating to next page.
-    _youtubeController.pause();
-    super.deactivate();
-  }
+  // @override
+  // void deactivate() {
+  //   // Pauses video while navigating to next page.
+  //   _youtubeController.pause();
+  //   super.deactivate();
+  // }
 
   @override
   void initState() {
