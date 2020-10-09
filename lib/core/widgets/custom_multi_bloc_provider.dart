@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:genius_demo/core/theme/presentation/bloc/theme_cubit.dart';
 import 'package:genius_demo/di.dart';
 import 'package:genius_demo/features/github/presentation/cubit/github_cubit.dart';
-import 'package:genius_demo/features/movies/presentation/cubit/movies_cubit.dart';
+import 'package:genius_demo/features/movies/presentation/cubit/movie/movies_cubit.dart';
+import 'package:genius_demo/features/movies/presentation/cubit/movie_video/movie_video_cubit.dart';
 import 'package:genius_demo/features/news/presentation/cubit/news_cubit.dart';
 
 class CustomMultiBlocProvider extends StatelessWidget {
@@ -29,6 +30,9 @@ class CustomMultiBlocProvider extends StatelessWidget {
         ),
         BlocProvider<GithubCubit>(
           create: (_) => sl<GithubCubit>(),
+        ),
+        BlocProvider<MovieVideoCubit>(
+          create: (_) => sl<MovieVideoCubit>(),
         ),
       ],
       child: child ?? SizedBox(),

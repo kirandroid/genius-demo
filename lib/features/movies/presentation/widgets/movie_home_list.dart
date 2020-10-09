@@ -1,14 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:genius_demo/core/utils/text_style.dart';
+import 'package:genius_demo/core/utils/toast.dart';
 import 'package:genius_demo/core/widgets/shimmerEffect.dart';
 import 'package:genius_demo/core/extensions/context_extension.dart';
 import 'package:genius_demo/features/movies/domain/entities/movies_response.dart';
+import 'package:genius_demo/features/movies/presentation/cubit/movie_video/movie_video_cubit.dart';
 
-class MovieHomeList extends StatelessWidget {
+class MovieHomeList extends StatefulWidget {
   final String listTitle;
   final MoviesResponse moviesResponse;
   MovieHomeList({@required this.moviesResponse, @required this.listTitle});
+
+  @override
+  _MovieHomeListState createState() => _MovieHomeListState();
+}
+
+class _MovieHomeListState extends State<MovieHomeList> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,12 +28,19 @@ class MovieHomeList extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(left: 15),
-              child: Text(listTitle,
+              child: Text(widget.listTitle,
                   style: StyleText.montMedium.copyWith(
                       color: Colors.grey, fontSize: 12, letterSpacing: 2)),
             ),
+
+            //TODO: Later when i get time
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Toast().showToast(
+                    title: "Argg!",
+                    message: "Not Implemented 😒",
+                    context: context);
+              },
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 7.5),
                 child: Text("VIEW ALL",
@@ -42,10 +58,13 @@ class MovieHomeList extends StatelessWidget {
               itemCount: 10,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                final movie = moviesResponse.results[index];
+                final movie = widget.moviesResponse.results[index];
                 return InkWell(
                   borderRadius: BorderRadius.circular(8),
-                  onTap: () {},
+                  onTap: () async {
+                    await BlocProvider.of<MovieVideoCubit>(context)
+                        .getMovieVideos(movie_id: movie.id.toString());
+                  },
                   child: Padding(
                     padding: EdgeInsets.only(
                         left: index == 0 ? 16 : 8, right: 8, top: 8),
