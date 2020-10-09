@@ -1,16 +1,32 @@
-# genius_demo
+# Genius Demo
+Demo app for Genius.
 
-A new Flutter project.
+### Building
+To run this, you will need to add your NewsAPI and TheMovieDB API keys in keys.dart file.
+> lib/core/utils/keys.dart
 
-## Getting Started
+### API Used
+| API | Link |
+| ------ | ------ |
+| NewsAPI | https://newsapi.org/ |
+| TheMovieDB | https://www.themoviedb.org/ |
+| Github API | https://docs.github.com/en/free-pro-team@latest/rest |
+| Google Map | https://cloud.google.com/maps-platform/ |
 
-This project is a starting point for a Flutter application.
+### Download
+Download release apk from [here](https://github.com/kirandroid/genius-demo/releases/tag/0.1)
 
-A few resources to get you started if this is your first Flutter project:
+### Video
+[![](http://img.youtube.com/vi/4LCR6iExHac/0.jpg)](http://www.youtube.com/watch?v=4LCR6iExHac "")
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Screenshots
+Light             |  Dark
+:-------------------------:|:-------------------------:
+<img width="200" height="400" src="https://raw.githubusercontent.com/kirandroid/genius-demo/master/screenshots/1.png">  |  <img width="200" height="400" src="https://raw.githubusercontent.com/kirandroid/genius-demo/master/screenshots/2.png">
+<img width="200" height="400" src="https://raw.githubusercontent.com/kirandroid/genius-demo/master/screenshots/4.png">  |  <img width="200" height="400" src="https://raw.githubusercontent.com/kirandroid/genius-demo/master/screenshots/3.png">
+<img width="200" height="400" src="https://raw.githubusercontent.com/kirandroid/genius-demo/master/screenshots/6.png">  |  <img width="200" height="400" src="https://raw.githubusercontent.com/kirandroid/genius-demo/master/screenshots/7.png">
+<img width="200" height="400" src="https://raw.githubusercontent.com/kirandroid/genius-demo/master/screenshots/5.png">  |  <img width="200" height="400" src="https://raw.githubusercontent.com/kirandroid/genius-demo/master/screenshots/8.png">
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+License
+----
+MIT
