@@ -4,6 +4,7 @@ import 'package:genius_demo/core/error/failures.dart';
 import 'package:genius_demo/core/utils/network_info.dart';
 import 'package:genius_demo/features/movies/data/datasources/movies_local_data_source.dart';
 import 'package:genius_demo/features/movies/data/datasources/movies_remote_data_source.dart';
+import 'package:genius_demo/features/movies/domain/entities/movie_video_response.dart';
 import 'package:genius_demo/features/movies/domain/entities/movies_response.dart';
 import 'package:genius_demo/features/movies/domain/repositories/movies_repository.dart';
 import 'package:meta/meta.dart';
@@ -46,6 +47,22 @@ class MoviesRepositoryImpl implements MoviesRepository {
       }
     } else {
       return getLocalMovies(endpoint: endpoint);
+    }
+  }
+
+  @override
+  Future<Either<Failure, MovieVideoResponse>> getMovieVideo(
+      {@required String movie_id}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        MovieVideoResponse remoteMovie =
+            await remoteDataSource.getMovieVideo(movie_id: movie_id);
+        return Right(remoteMovie);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure());
     }
   }
 }

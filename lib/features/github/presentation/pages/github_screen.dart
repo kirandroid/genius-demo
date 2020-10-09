@@ -9,6 +9,7 @@ import 'package:genius_demo/core/widgets/shimmerEffect.dart';
 import 'package:genius_demo/features/github/domain/entities/github_response.dart';
 import 'package:genius_demo/features/github/presentation/cubit/github_cubit.dart';
 import 'package:genius_demo/core/extensions/context_extension.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class GithubScreen extends StatefulWidget {
   @override
@@ -107,10 +108,24 @@ class _GithubScreenState extends State<GithubScreen> {
                                       width: 20,
                                     ),
                                     Expanded(
-                                      child: Text(
-                                        git.name,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: StyleText.montMedium,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            git.name,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: StyleText.montMedium,
+                                          ),
+                                          Text(
+                                            'Last Updated ${timeago.format(DateTime.parse(git.updatedAt))}',
+                                            overflow: TextOverflow.ellipsis,
+                                            style: StyleText.montRegular
+                                                .copyWith(
+                                                    color: Colors.grey,
+                                                    fontSize: 10),
+                                          ),
+                                        ],
                                       ),
                                     )
                                   ],

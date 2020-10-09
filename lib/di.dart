@@ -13,7 +13,8 @@ import 'package:genius_demo/features/movies/data/datasources/movies_remote_data_
 import 'package:genius_demo/features/movies/data/repositories/movies_repository_impl.dart';
 import 'package:genius_demo/features/movies/domain/repositories/movies_repository.dart';
 import 'package:genius_demo/features/movies/domain/usecases/get_movies.dart';
-import 'package:genius_demo/features/movies/presentation/cubit/movies_cubit.dart';
+import 'package:genius_demo/features/movies/presentation/cubit/movie/movies_cubit.dart';
+import 'package:genius_demo/features/movies/presentation/cubit/movie_video/movie_video_cubit.dart';
 import 'package:genius_demo/features/news/data/datasources/news_local_data_source.dart';
 import 'package:genius_demo/features/news/data/datasources/news_remote_data_source.dart';
 import 'package:genius_demo/features/news/data/repositories/news_repository_impl.dart';
@@ -78,6 +79,7 @@ void _newsRegistration() {
 
 void _moviesRegistration() {
   sl.registerFactory(() => MoviesCubit(getMovies: sl()));
+  sl.registerFactory(() => MovieVideoCubit(getMovies: sl()));
   sl.registerLazySingleton(() => GetMovies(repository: sl()));
   sl.registerLazySingleton<MoviesRepository>(() => MoviesRepositoryImpl(
       localDataSource: sl(), remoteDataSource: sl(), networkInfo: sl()));
